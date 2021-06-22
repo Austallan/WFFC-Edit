@@ -11,6 +11,10 @@
 #include "DisplayChunk.h"
 #include "ChunkObject.h"
 #include "InputCommands.h"
+#include "camera.h"
+#include "MoveMode.h"
+#include "RotateMode.h"
+#include "ScaleMode.h"
 #include <vector>
 
 
@@ -26,10 +30,18 @@ public:
 	// Initialization and management
 	void Initialize(HWND window, int width, int height);
 	void SetGridState(bool state);
+	RECT m_ScreenDimensions;
 
 	// Basic game loop
 	void Tick(InputCommands * Input);
 	void Render();
+
+	//Mouse Select Function
+	int MousePicking();
+	void HighlightSelectedObject(int selectNum);
+	void setMode(int NewMode);
+	int returnMode();
+	void clearSelection();
 
 	// Rendering helpers
 	void Clear();
@@ -50,6 +62,14 @@ public:
 	void BuildDisplayChunk(ChunkObject *SceneChunk);
 	void SaveDisplayChunk(ChunkObject *SceneChunk);	//saves geometry et al
 	void ClearDisplayList();
+	void AddNewObject();
+	void deleteSelectedObjects();
+	void copyObjects();
+	void pasteObjects();
+	std::vector<DisplayObject> returnDisplayList();
+
+	//Zoom to list selected
+	void setMSnapState(bool NewState);
 
 #ifdef DXTK_AUDIO
 	void NewAudioDevice();
@@ -68,17 +88,10 @@ private:
 	std::vector<DisplayObject>			m_displayList;
 	DisplayChunk						m_displayChunk;
 	InputCommands						m_InputCommands;
-
-	//functionality
-	float								m_movespeed;
-
-	//camera
-	DirectX::SimpleMath::Vector3		m_camPosition;
-	DirectX::SimpleMath::Vector3		m_camOrientation;
-	DirectX::SimpleMath::Vector3		m_camLookAt;
-	DirectX::SimpleMath::Vector3		m_camLookDirection;
-	DirectX::SimpleMath::Vector3		m_camRight;
-	float m_camRotRate;
+	camera								m_Camera;
+	MoveMode							m_Move;
+	RotateMode							m_Rotate;
+	ScaleMode							m_Scale;
 
 	//control variables
 	bool m_grid;							//grid rendering on / off
@@ -102,6 +115,15 @@ private:
     std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>  m_batch;
     std::unique_ptr<DirectX::SpriteBatch>                                   m_sprites;
     std::unique_ptr<DirectX::SpriteFont>                                    m_font;
+
+	std::vector<DisplayObject> 												m_highlightObject;
+	std::vector<DisplayObject> 												m_copyObject;
+	int																		g_CurrentMode;
+	bool																	g_freshSelect;
+	bool																	pasteBreak;
+	bool																	newBreak;
+	bool																	deleteBreak;
+
 
 #ifdef DXTK_AUDIO
     std::unique_ptr<DirectX::AudioEngine>                                   m_audEngine;

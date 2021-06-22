@@ -44,9 +44,6 @@
     <ClCompile Include="ChunkObject.cpp">
       <Filter>Tool</Filter>
     </ClCompile>
-    <ClCompile Include="DisplayObject.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="MFCFrame.cpp">
       <Filter>MFC</Filter>
     </ClCompile>
@@ -58,6 +55,27 @@
     </ClCompile>
     <ClCompile Include="SelectDialogue.cpp">
       <Filter>MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectDialogue.cpp">
+      <Filter>MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayObject.cpp">
+      <Filter>Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="ModeDialogue.cpp">
+      <Filter>MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveMode.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateMode.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaleMode.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +125,24 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SelectDialogue.h">
       <Filter>MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectDialogue.h">
+      <Filter>MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModeDialogue.h">
+      <Filter>MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveMode.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateMode.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaleMode.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

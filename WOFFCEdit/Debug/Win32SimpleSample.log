@@ -1,22 +1,78 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  DisplayChunk.cpp
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(14): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(74): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(94): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(152): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(189): warning C4101: 'index4': unreferenced local variable
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(189): warning C4101: 'index2': unreferenced local variable
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(189): warning C4101: 'index3': unreferenced local variable
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\displaychunk.cpp(189): warning C4101: 'index1': unreferenced local variable
+  Game.cpp
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(205): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(220): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(235): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(332): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(331): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(330): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(344): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(385): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(384): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(383): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(303): warning C4101: 'Buffer': unreferenced local variable
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(420): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(421): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(424): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(432): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(431): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(438): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(440): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(447): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(472): warning C4018: '<=': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(476): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(489): warning C4018: '<=': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(924): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\game.cpp(946): warning C4018: '<': signed/unsigned mismatch
+  MFCFrame.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  MFCMain.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  Main.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
   ToolMain.cpp
   _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-c:\programming\wffc\woffcedit\toolmain.cpp(91): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(92): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(93): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(94): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(95): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(96): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(97): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(98): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(99): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(111): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(113): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(117): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(118): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(119): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(123): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\programming\wffc\woffcedit\toolmain.cpp(124): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Win32SimpleSample.vcxproj -> C:\Programming\WFFC\WOFFCEdit\Debug\WoFEdit.exe
-  Win32SimpleSample.vcxproj -> C:\Programming\WFFC\WOFFCEdit\Debug\WoFEdit.pdb (Partial PDB)
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(114): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(115): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(116): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(117): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(118): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(119): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(120): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(121): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(122): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(134): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(135): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(136): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(140): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(141): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(142): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(146): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(147): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(157): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(158): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(159): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(160): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(161): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(162): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(163): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(164): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(165): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(166): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(221): warning C4018: '<': signed/unsigned mismatch
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(425): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\documents\4th year\cmp405\wffc-edit\woffcedit\toolmain.cpp(426): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Win32SimpleSample.vcxproj -> C:\Users\austi\Documents\4th Year\CMP405\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe

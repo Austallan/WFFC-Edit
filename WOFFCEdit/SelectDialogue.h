@@ -3,6 +3,7 @@
 #include "resource.h"
 #include "afxwin.h"
 #include "SceneObject.h"
+#include "DisplayObject.h"
 #include <vector>
 
 // SelectDialogue dialog
@@ -12,10 +13,10 @@ class SelectDialogue : public CDialogEx
 	DECLARE_DYNAMIC(SelectDialogue)
 
 public:
-	SelectDialogue(CWnd* pParent, std::vector<SceneObject>* SceneGraph);   // modal // takes in out scenegraph in the constructor
+	SelectDialogue(CWnd* pParent, std::vector<DisplayObject>* SceneGraph);   // modal // takes in out scenegraph in the constructor
 	SelectDialogue(CWnd* pParent = NULL);
 	virtual ~SelectDialogue();
-	void SetObjectData(std::vector<SceneObject>* SceneGraph, int * Selection);	//passing in pointers to the data the class will operate on.
+	void SetObjectData(std::vector<DisplayObject>* SceneGraph, int * Selection, bool * freshSelect);	//passing in pointers to the data the class will operate on.
 	
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
@@ -27,8 +28,9 @@ protected:
 	afx_msg void End();		//kill the dialogue
 	afx_msg void Select();	//Item has been selected
 
-	std::vector<SceneObject> * m_sceneGraph;
+	std::vector<DisplayObject> * m_sceneGraph;
 	int * m_currentSelection;
+	bool * m_freshSelect;
 	
 
 	DECLARE_MESSAGE_MAP()

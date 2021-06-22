@@ -6,6 +6,7 @@ class DisplayObject
 {
 public:
 	DisplayObject();
+	DisplayObject(const DisplayObject &obj);
 	~DisplayObject();
 
 	std::shared_ptr<DirectX::Model>						m_model;							//main Mesh
@@ -26,5 +27,7 @@ public:
 	float	m_light_constant;
 	float	m_light_linear;
 	float	m_light_quadratic;
+	std::string m_model_path;
+	std::string m_tex_diffuse_path;
 };
 

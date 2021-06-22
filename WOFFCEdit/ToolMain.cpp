@@ -13,12 +13,36 @@ ToolMain::ToolMain()
 	m_sceneGraph.clear();	//clear the vector for the scenegraph
 	m_databaseConnection = NULL;
 
+	m_currentMode						= 1;
+
 	//zero input commands
-	m_toolInputCommands.forward		= false;
-	m_toolInputCommands.back		= false;
-	m_toolInputCommands.left		= false;
-	m_toolInputCommands.right		= false;
-	
+	m_toolInputCommands.forward			= false;
+	m_toolInputCommands.back			= false;
+	m_toolInputCommands.left			= false;
+	m_toolInputCommands.right			= false;
+	m_toolInputCommands.cameraMode		= false;
+	m_toolInputCommands.mouse_X			= 0;
+	m_toolInputCommands.mouse_Y			= 0;
+	m_toolInputCommands.oldXPos			= 0;
+	m_toolInputCommands.oldYPos			= 0;
+	m_toolInputCommands.xPos			= 0;
+	m_toolInputCommands.yPos			= 0;
+	m_toolInputCommands.xChange			= 0;
+	m_toolInputCommands.yChange			= 0;
+	m_toolInputCommands.rotLeft			= false;
+	m_toolInputCommands.rotRight		= false;
+	m_toolInputCommands.mouse_LB_Down	= false;
+	m_toolInputCommands.isX				= false;
+	m_toolInputCommands.isO				= false;
+	m_toolInputCommands.ctrl			= false;
+	m_toolInputCommands.mouse_RB_Down	= false;
+	m_toolInputCommands.isF				= false;
+	m_toolInputCommands.isR				= false;
+	m_toolInputCommands.Lshift			= false;
+	m_toolInputCommands.isV				= false;
+	m_toolInputCommands.isM				= false;
+	m_toolInputCommands.isN				= false;
+	m_toolInputCommands.isBackspace		= false;
 }
 
 
@@ -30,7 +54,6 @@ ToolMain::~ToolMain()
 
 int ToolMain::getCurrentSelectionID()
 {
-
 	return m_selectedObject;
 }
 
@@ -191,6 +214,59 @@ void ToolMain::onActionSave()
 	char *ErrMSG = 0;
 	sqlite3_stmt *pResults;								//results of the query
 	
+	m_sceneGraph.clear();
+
+	std::vector<DisplayObject> existingObjects = m_d3dRenderer.returnDisplayList();
+
+	for (int i = 0; i < existingObjects.size(); i++)
+	{
+		SceneObject Temp;
+		//Pos
+		Temp.posX = existingObjects[i].m_position.x;
+		Temp.posY = existingObjects[i].m_position.y;
+		Temp.posZ = existingObjects[i].m_position.z;
+
+		//Rot
+		Temp.rotX = existingObjects[i].m_orientation.x;
+		Temp.rotY = existingObjects[i].m_orientation.y;
+		Temp.rotZ = existingObjects[i].m_orientation.z;
+
+		//Scale
+		Temp.scaX = existingObjects[i].m_scale.x;
+		Temp.scaY = existingObjects[i].m_scale.y;
+		Temp.scaZ = existingObjects[i].m_scale.z;
+
+		//editor
+		Temp.editor_render = existingObjects[i].m_render;
+		Temp.editor_wireframe = existingObjects[i].m_wireframe;
+		
+		//diffuse
+		Temp.light_type = existingObjects[i].m_render;
+		Temp.light_diffuse_r = existingObjects[i].m_light_diffuse_r;
+		Temp.light_diffuse_g = existingObjects[i].m_light_diffuse_g;
+		Temp.light_diffuse_b = existingObjects[i].m_light_diffuse_b;
+
+		//Specular
+		Temp.light_specular_r = existingObjects[i].m_light_specular_r;
+		Temp.light_specular_g = existingObjects[i].m_light_specular_g;
+		Temp.light_specular_b = existingObjects[i].m_light_specular_b;
+
+		//More lights
+		Temp.light_spot_cutoff = existingObjects[i].m_light_spot_cutoff;
+		Temp.light_constant = existingObjects[i].m_light_constant;
+
+		Temp.light_linear = existingObjects[i].m_light_linear;
+		Temp.light_quadratic = existingObjects[i].m_light_quadratic;
+
+		//ID
+		Temp.ID = existingObjects[i].m_ID;
+
+		//Model/Texture
+		Temp.model_path = existingObjects[i].m_model_path;
+		Temp.tex_diffuse_path = existingObjects[i].m_tex_diffuse_path;
+
+		m_sceneGraph.push_back(Temp);
+	}
 
 	//OBJECTS IN THE WORLD Delete them all
 	//prepare SQL Text
@@ -289,10 +365,44 @@ void ToolMain::Tick(MSG *msg)
 
 	//Renderer Update Call
 	m_d3dRenderer.Tick(&m_toolInputCommands);
+
+	m_displayPointer = m_d3dRenderer.returnDisplayList();
+
+	if (m_toolInputCommands.ctrl && m_toolInputCommands.isX)
+		m_d3dRenderer.clearSelection();
+
+	if (m_toolInputCommands.mouse_LB_Down)
+	{
+		if(m_toolInputCommands.ctrl && !m_toolInputCommands.isX)//check X isn't down, just to be safe
+			m_selectedObject = m_d3dRenderer.MousePicking();
+		
+		m_toolInputCommands.mouse_LB_Down = false;
+	}
+
+	setModeCurrent(m_currentMode);
+
+	if (m_freshSelect)
+	{
+		m_d3dRenderer.setMSnapState(m_freshSelect);
+		m_d3dRenderer.HighlightSelectedObject(m_selectedObject);
+		m_freshSelect = false;
+	}
+}
+
+void ToolMain::setModeCurrent(int NewMode)
+{
+	m_d3dRenderer.setMode(NewMode);
+}
+
+int ToolMain::getCurrentMode()
+{
+	return m_d3dRenderer.returnMode();
 }
 
 void ToolMain::UpdateInput(MSG * msg)
 {
+	m_toolInputCommands.xChange = 0;
+	m_toolInputCommands.yChange = 0;
 
 	switch (msg->message)
 	{
@@ -306,12 +416,38 @@ void ToolMain::UpdateInput(MSG * msg)
 		break;
 
 	case WM_MOUSEMOVE:
+		m_toolInputCommands.oldXPos = m_toolInputCommands.xPos;
+		m_toolInputCommands.oldYPos = m_toolInputCommands.yPos;
+
+		m_toolInputCommands.xPos = GET_X_LPARAM(msg->lParam);
+		m_toolInputCommands.yPos = GET_Y_LPARAM(msg->lParam);
+
+		m_toolInputCommands.xChange = m_toolInputCommands.xPos - m_toolInputCommands.oldXPos;
+		m_toolInputCommands.yChange = m_toolInputCommands.yPos - m_toolInputCommands.oldYPos;
+
+		//update the mouse X and Y which will be sent thru to the Renderer.
+		m_toolInputCommands.mouse_X = GET_X_LPARAM(msg->lParam);
+		m_toolInputCommands.mouse_Y = GET_Y_LPARAM(msg->lParam);
+
 		break;
 
 	case WM_LBUTTONDOWN:	//mouse button down,  you will probably need to check when its up too
 		//set some flag for the mouse button in inputcommands
+
+		//mouse left pressed.	
+		m_toolInputCommands.mouse_LB_Down = true;
+
 		break;
 
+	case WM_RBUTTONDOWN:
+		m_toolInputCommands.mouse_RB_Down = true;
+
+		break;
+
+	case WM_RBUTTONUP:
+		m_toolInputCommands.mouse_RB_Down = false;
+
+		break;
 	}
 	//here we update all the actual app functionality that we want.  This information will either be used int toolmain, or sent down to the renderer (Camera movement etc
 	//WASD movement
@@ -348,6 +484,61 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.rotLeft = true;
 	}
 	else m_toolInputCommands.rotLeft = false;
+	if (m_keyArray['C'])
+	{
+		m_toolInputCommands.cameraMode = true;
+	}
+	else m_toolInputCommands.cameraMode = false;
+	if (m_keyArray[17])
+	{
+		m_toolInputCommands.ctrl = true;
+	}
+	else m_toolInputCommands.ctrl = false;
+	if (m_keyArray['X'])
+	{
+		m_toolInputCommands.isX = true;
+	}
+	else m_toolInputCommands.isX = false;
+	if (m_keyArray['O'])
+	{
+		m_toolInputCommands.isO = true;
+	}
+	else m_toolInputCommands.isO = false;
+	if (m_keyArray['R'])
+	{
+		m_toolInputCommands.isR = true;
+	}
+	else m_toolInputCommands.isR = false;
+	if (m_keyArray['F'])
+	{
+		m_toolInputCommands.isF = true;
+	}
+	else m_toolInputCommands.isF = false;
+	if (GetKeyState(VK_SHIFT) & 0x8000)
+	{
+		m_toolInputCommands.Lshift = false;
+	}
+	else m_toolInputCommands.Lshift = true;
+	if (m_keyArray['V'])
+	{
+		m_toolInputCommands.isV = true;
+	}
+	else m_toolInputCommands.isV = false;
+	if (m_keyArray['N'])
+	{
+		m_toolInputCommands.isN = true;
+	}
+	else m_toolInputCommands.isN = false;
+	if (m_keyArray['M'])
+	{
+		m_toolInputCommands.isM = true;
+	}
+	else m_toolInputCommands.isM = false;
+	if (m_keyArray[8])
+	{
+		m_toolInputCommands.isBackspace = true;
+	}
+	else m_toolInputCommands.isBackspace = false;
 
 	//WASD
 }

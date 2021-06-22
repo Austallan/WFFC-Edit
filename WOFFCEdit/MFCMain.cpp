@@ -6,6 +6,8 @@ BEGIN_MESSAGE_MAP(MFCMain, CWinApp)
 	ON_COMMAND(ID_FILE_QUIT,	&MFCMain::MenuFileQuit)
 	ON_COMMAND(ID_FILE_SAVETERRAIN, &MFCMain::MenuFileSaveTerrain)
 	ON_COMMAND(ID_EDIT_SELECT, &MFCMain::MenuEditSelect)
+	ON_COMMAND(ID_EDIT_SELECTEDOBJ, &MFCMain::MenuEditSelectedObj)
+	ON_COMMAND(ID_EDIT_MODESELECT, &MFCMain::MenuEditMode)
 	ON_COMMAND(ID_BUTTON40001,	&MFCMain::ToolBarButton1)
 	ON_UPDATE_COMMAND_UI(ID_INDICATOR_TOOL, &CMyFrame::OnUpdatePage)
 END_MESSAGE_MAP()
@@ -73,6 +75,8 @@ int MFCMain::Run()
 			std::wstring statusString = L"Selected Object: " + std::to_wstring(ID);
 			m_ToolSystem.Tick(&msg);
 
+			m_ToolObjectDialogue.GetCurrentSelection(m_ToolSystem.getCurrentSelectionID());
+
 			//send current object ID to status bar in The main frame
 			m_frame->m_wndStatusBar.SetPaneText(1, statusString.c_str(), 1);	
 		}
@@ -100,7 +104,21 @@ void MFCMain::MenuEditSelect()
 	//modeless dialogue must be declared in the class.   If we do local it will go out of scope instantly and destroy itself
 	m_ToolSelectDialogue.Create(IDD_DIALOG1);	//Start up modeless
 	m_ToolSelectDialogue.ShowWindow(SW_SHOW);	//show modeless
-	m_ToolSelectDialogue.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject);
+	m_ToolSelectDialogue.SetObjectData(&m_ToolSystem.m_displayPointer, &m_ToolSystem.m_selectedObject, &m_ToolSystem.m_freshSelect);
+}
+
+void MFCMain::MenuEditSelectedObj()
+{
+	m_ToolObjectDialogue.Create(IDD_DIALOGSELECTED);	//Start up modeless
+	m_ToolObjectDialogue.ShowWindow(SW_SHOW);			//show modeless
+	m_ToolObjectDialogue.SetObjectData(&m_ToolSystem.m_displayPointer, m_ToolSystem.m_selectedObject);
+}
+
+void MFCMain::MenuEditMode()
+{
+	m_ToolModeDialogue.Create(IDD_DIALOGMODE);	//Start up modeless
+	m_ToolModeDialogue.ShowWindow(SW_SHOW);			//show modeless
+	m_ToolModeDialogue.SetObjectData(&m_ToolSystem.m_currentMode);
 }
 
 void MFCMain::ToolBarButton1()

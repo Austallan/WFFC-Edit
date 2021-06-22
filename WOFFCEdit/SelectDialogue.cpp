@@ -11,12 +11,14 @@ IMPLEMENT_DYNAMIC(SelectDialogue, CDialogEx)
 //Message map.  Just like MFCMAIN.cpp.  This is where we catch button presses etc and point them to a handy dandy method.
 BEGIN_MESSAGE_MAP(SelectDialogue, CDialogEx)
 	ON_COMMAND(IDOK, &SelectDialogue::End)					//ok button
+	ON_BN_CLICKED(IDCLOSE, &SelectDialogue::End)
+	ON_BN_CLICKED(IDCANCEL, &SelectDialogue::End)
 	ON_BN_CLICKED(IDOK, &SelectDialogue::OnBnClickedOk)		
 	ON_LBN_SELCHANGE(IDC_LIST1, &SelectDialogue::Select)	//listbox
 END_MESSAGE_MAP()
 
 
-SelectDialogue::SelectDialogue(CWnd* pParent, std::vector<SceneObject>* SceneGraph)		//constructor used in modal
+SelectDialogue::SelectDialogue(CWnd* pParent, std::vector<DisplayObject>* SceneGraph)		//constructor used in modal
 	: CDialogEx(IDD_DIALOG1, pParent)
 {
 	m_sceneGraph = SceneGraph;
@@ -32,17 +34,18 @@ SelectDialogue::~SelectDialogue()
 }
 
 ///pass through pointers to the data in the tool we want to manipulate
-void SelectDialogue::SetObjectData(std::vector<SceneObject>* SceneGraph, int * selection)
+void SelectDialogue::SetObjectData(std::vector<DisplayObject>* SceneGraph, int * selection, bool * freshSelect)
 {
 	m_sceneGraph = SceneGraph;
 	m_currentSelection = selection;
+	m_freshSelect = freshSelect;
 
 	//roll through all the objects in the scene graph and put an entry for each in the listbox
 	int numSceneObjects = m_sceneGraph->size();
 	for (int i = 0; i < numSceneObjects; i++)
 	{
 		//easily possible to make the data string presented more complex. showing other columns.
-		std::wstring listBoxEntry = std::to_wstring(m_sceneGraph->at(i).ID);
+		std::wstring listBoxEntry = std::to_wstring(m_sceneGraph->at(i).m_ID);
 		m_listBox.AddString(listBoxEntry.c_str());
 	}
 }
@@ -66,8 +69,9 @@ void SelectDialogue::Select()
 	
 	m_listBox.GetText(index, currentSelectionValue);
 
-	*m_currentSelection = _ttoi(currentSelectionValue);
+	*m_freshSelect = true;
 
+	*m_currentSelection = _ttoi(currentSelectionValue);
 }
 
 BOOL SelectDialogue::OnInitDialog()
@@ -91,9 +95,6 @@ BOOL SelectDialogue::OnInitDialog()
 void SelectDialogue::PostNcDestroy()
 {
 }
-
-
-
 
 // SelectDialogue message handlers callback   - We only need this if the dailogue is being setup-with createDialogue().  We are doing
 //it manually so its better to use the messagemap

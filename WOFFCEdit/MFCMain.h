@@ -9,6 +9,8 @@
 #include "resource.h"
 #include "MFCFrame.h"
 #include "SelectDialogue.h"
+#include "ObjectDialogue.h"
+#include "ModeDialogue.h"
 
 
 class MFCMain : public CWinApp 
@@ -26,6 +28,8 @@ private:
 	ToolMain m_ToolSystem;	//Instance of Tool System that we interface to. 
 	CRect WindowRECT;	//Window area rectangle. 
 	SelectDialogue m_ToolSelectDialogue;			//for modeless dialogue, declare it here
+	ObjectDialogue m_ToolObjectDialogue;
+	ModeDialogue   m_ToolModeDialogue;
 
 	int m_width;		
 	int m_height;
@@ -34,6 +38,8 @@ private:
 	afx_msg void MenuFileQuit();
 	afx_msg void MenuFileSaveTerrain();
 	afx_msg void MenuEditSelect();
+	afx_msg void MenuEditSelectedObj();
+	afx_msg void MenuEditMode();
 	afx_msg	void ToolBarButton1();
 
 
